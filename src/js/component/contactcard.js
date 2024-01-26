@@ -5,9 +5,6 @@ import { Context } from "../store/appContext";
 export const Contactcard = ({ contact }) => {
   const { actions } = useContext(Context);
   
-  useEffect(() => {
-    actions.deleteContact(contact.id);
-}, [])
 
   const handleDelete = () => {
     actions.deleteContact(contact.id);

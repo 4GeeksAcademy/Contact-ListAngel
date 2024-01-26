@@ -91,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 				.then(data => {
-					getActions().fetchContacts()
+					
 				})
 				.catch(error => {
 					console.error("Error al realizar la solicitud DELETE:", error);
