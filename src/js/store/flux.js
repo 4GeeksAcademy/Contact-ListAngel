@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+		
 			demo: [
 				{
 					title: "FIRST",
@@ -12,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contactos: [],
+			contact: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,9 +40,69 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			fetchContacts: () => {
+				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/angel-agenda", {
+					method: 'GET'
+				})
+				.then(response => {
+					if(!response.ok) throw Error("no");
+					return response.json()
+				})
+				.then(data => {
+					setStore({contactos: data});
+				})
+				.catch(error => {
+                    console.log(error)
+				})
+			},
+
+			createContact: (newContact) => {
+				fetch("https://playground.4geeks.com/apis/fake/contact/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					  },
+					  body: JSON.stringify(newContact),
+					}
+				)
+			    .then(response => {
+					if(!response.ok) throw Error("no");
+					return response.json()
+				})
+				.then(data => {
+					getActions().fetchContacts()
+				})
+				.catch(error => {
+                    console.log(error)
+				})
+			},
+
+			deleteContact: (contactId) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
+					method: "DELETE"
+				})
+				.then(response => {
+					if (response.ok) {
+						console.log(`Contacto con ID ${contactId} eliminado exitosamente.`);
+						actions.fetchContacts();
+					} else {
+						console.error("Error al borrar el contacto.");
+					}
+				})
+				.then(data => {
+					getActions().fetchContacts()
+				})
+				.catch(error => {
+					console.error("Error al realizar la solicitud DELETE:", error);
+				});
+			},
+
+			seeContact: (contact) => {
+				setStore ({contact:contact})
+			  }
 		}
-	};
+	}
 };
 
 export default getState;
