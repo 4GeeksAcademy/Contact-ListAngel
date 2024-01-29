@@ -9,7 +9,13 @@ export const Contact = () => {
 
 	useEffect(() => {
 		actions.fetchContacts();
+		actions.deleteContact();
+		actions.updateContact();
 	}, []);
+
+	const handleUpdateContact = () => {
+		actions.updateContact(contact.id);
+	  };
 
 	const handleDeleteContact = (contactId) => {
 		actions.deleteContact(contactId);
@@ -33,6 +39,7 @@ export const Contact = () => {
 								key={contact.id}
 								contact={contact}
 								onDeleteContact={handleDeleteContact}
+								onUpdateContact={handleUpdateContact}
 							/>
 						)
 				)}

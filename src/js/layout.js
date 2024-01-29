@@ -12,6 +12,7 @@ import { Footer } from "./component/footer";
 
 import { Addcontact } from "./views/addcontact";
 import { Contact } from "./views/contact";
+import { Editcontact } from "./views/editcontact";
 
 
 
@@ -30,6 +31,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/addcontact" element={<Addcontact />} />
+						<Route path="/editcontact/:contact_id" element={<Editcontact />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

@@ -80,7 +80,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			deleteContact: (contactId) => {
 				fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
-					method: "DELETE"
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+					  },
 				})
 				.then(response => {
 					if (response.ok) {
@@ -91,12 +94,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 				.then(data => {
-					
+					getActions().fetchContacts()
 				})
 				.catch(error => {
 					console.error("Error al realizar la solicitud DELETE:", error);
 				});
 			},
+
+			updateContact: (contactId) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					  },
+				})
+				.then(response => {
+					if (response.ok) {
+						console.log(`Contacto con ID ${contactId} editado exitosamente.`);
+						actions.fetchContacts();
+					} else {
+						console.error("Error al editar el contacto.");
+					}
+				})
+				.then(data => {
+					getActions().fetchContacts()
+				})
+				.catch(error => {
+					console.error("Error al realizar la solicitud EDITAR:", error);
+				});
+			},
+
 
 			seeContact: (contact) => {
 				setStore ({contact:contact})
