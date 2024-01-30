@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Contactcard = ({ contact }) => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
   const handleUpdateContact = (event) => {
     setContact({
@@ -31,11 +32,12 @@ export const Contactcard = ({ contact }) => {
             <h6><b>Address:</b> {contact.address}</h6>
             <div className="d-flex justify-content-end">
               <button onClick={handleDeleteContact} className="btn btn-danger m-1">Borrar Contacto</button>
-              <Link to={`/editcontact/${contact.id}`}>
-                <button className="btn btn-primary m-1">
+                <button onClick={() => {
+                  actions.seeContact(contact);
+                  navigate("/editcontact");
+                }} className="btn btn-primary m-1">
                   Edit Contact
                 </button>
-              </Link>
             </div>
           </div>
         </div>

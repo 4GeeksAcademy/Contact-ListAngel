@@ -88,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(response => {
 					if (response.ok) {
 						console.log(`Contacto con ID ${contactId} eliminado exitosamente.`);
-						actions.fetchContacts();
+						//*getActions().fetchContacts();
 					} else {
 						console.error("Error al borrar el contacto.");
 					}
@@ -97,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().fetchContacts()
 				})
 				.catch(error => {
-					console.error("Error al realizar la solicitud DELETE:", error);
+					console.error(error);
 				});
 			},
 
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(response => {
 					if (response.ok) {
 						console.log(`Contacto con ID ${contactId} editado exitosamente.`);
-						actions.fetchContacts();
+						//*getActions().fetchContacts();
 					} else {
 						console.error("Error al editar el contacto.");
 					}
@@ -120,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().fetchContacts()
 				})
 				.catch(error => {
-					console.error("Error al realizar la solicitud EDITAR:", error);
+					console.error(error);
 				});
 			},
 
@@ -128,6 +128,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			seeContact: (contact) => {
 				setStore ({contact:contact})
 			  }
+			  
 		}
 	}
 };
