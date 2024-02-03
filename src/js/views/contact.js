@@ -23,8 +23,8 @@ export const Contact = () => {
 
 
 	return (
-		<div className="">
-			<nav className="navbar navbar-light bg-light mb-3">
+		<div className="bg-primary">
+			<nav className="navbar navbar-dark bg-light mb-3 shadow">
 				<div className="container">
 					<Link to="/addcontact">
 						<button className="btn bg-success"><h6 className="text-white">Add New Contact</h6></button>

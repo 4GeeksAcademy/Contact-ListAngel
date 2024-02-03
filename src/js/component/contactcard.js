@@ -18,7 +18,7 @@ export const Contactcard = ({ contact }) => {
   };
 
   return (
-    <div className="card m-auto d-inline-flex" style={{ maxWidth: "20rem" }}>
+    <div className="card d-inline-flex mb-4 shadow" style={{ maxWidth: "20rem", margin: "0 10px" }}>
       <div className="row g-0">
         <div className="col-md-4">
           <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" className="img-fluid rounded-start" alt="Contact Avatar" />
@@ -35,7 +35,7 @@ export const Contactcard = ({ contact }) => {
                 <button onClick={() => {
                   actions.seeContact(contact);
                   navigate("/editcontact");
-                }} className="btn btn-primary m-1">
+                }} className="btn btn-warning m-1">
                   Edit Contact
                 </button>
             </div>
